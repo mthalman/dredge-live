@@ -1,0 +1,58 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Dredge Live</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass @(IsMedium ? "d-flex" : "") nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="flex-column flex-grow-1 d-flex">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <i class="bi bi-house-door-fill"></i> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="image">
+                <i class="bi bi-zoom-in"></i> Query Image
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="compare">
+                <i class="bi bi-file-diff-fill"></i> Compare Images
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="repos">
+                <i class="bi bi-collection-fill"></i> Query Repos
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="tags">
+                <i class="bi bi-bookmark-fill"></i> Query Tags
+            </NavLink>
+        </div>
+        <div class="nav-item px-3 mt-auto">
+            <NavLink class="nav-link" href="settings">
+                <i class="bi bi-gear-fill"></i> Settings
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+<MediaQuery Media="@Breakpoints.MediumUp" @bind-Matches="IsMedium" />
+
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private bool IsMedium = false;
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
